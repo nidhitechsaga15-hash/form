@@ -11,8 +11,23 @@ class FormServiceProvider extends ServiceProvider
         // Views ko load karenge
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'form');
 
+
+
         $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
 
+        $customRoutes = base_path('routes/form.php');
+        if (file_exists($customRoutes)) {
+            $this->loadRoutesFrom($customRoutes);
+        }
+
+        $this->publishes([
+                __DIR__ . '/../database/migrations/' => database_path('migrations'),
+            ], 'migrations');
+
+
+            $this->publishes([
+                __DIR__ . '/../Http/Controllers' => app_path('Http/Controllers/FormController'),
+            ], 'controllers');
 
         // Routes load karenge
         $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
@@ -21,6 +36,15 @@ class FormServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../config/form.php' => config_path('form.php'),
         ], 'config');
+
+         $this->publishes([
+            __DIR__.'/../resources/views' => resource_path('views/vendor/form'),
+        ], 'views');
+
+
+          $this->publishes([
+                __DIR__ . '/../routes/web.php' => base_path('routes/web.php'),
+            ], 'routes');
     }
 
     public function register()
