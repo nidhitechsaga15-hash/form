@@ -1,0 +1,20 @@
+{
+    "name": "nidhirajput/form",
+    "description": "A simple reusable form package",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "NidhiRajput\\Form\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "NidhiRajput\\Form\\FormServiceProvider"
+            ]
+        }
+    },
+    "require": {}
+
+
+}
