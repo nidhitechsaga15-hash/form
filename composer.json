@@ -13,11 +13,12 @@
         "php": ">=8.0",
         "illuminate/support": "^10.0 || ^11.0 || ^12.0"
     },
-    "autoload": {
+   "autoload": {
     "psr-4": {
         "NidhiRajput\\Form\\": "packages/NidhiRajput/Form/src/"
     }
 },
+
 
     "extra": {
         "laravel": {
