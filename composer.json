@@ -14,10 +14,11 @@
         "illuminate/support": "^10.0 || ^11.0 || ^12.0"
     },
     "autoload": {
-        "psr-4": {
-            "NidhiRajput\\Form\\": "src/"
-        }
-    },
+    "psr-4": {
+        "NidhiRajput\\Form\\": "packages/NidhiRajput/Form/src/"
+    }
+},
+
     "extra": {
         "laravel": {
             "providers": [

@@ -12,7 +12,7 @@ class FormController extends Controller
 {
     public function index()
     {
-        return view('form::index'); // form.blade.php
+        return view('form::form') ;
     }
 
     public function submit(Request $request)

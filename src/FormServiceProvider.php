@@ -6,49 +6,51 @@ use Illuminate\Support\ServiceProvider;
 
 class FormServiceProvider extends ServiceProvider
 {
+    /**
+     * Bootstrap any package services.
+     */
     public function boot()
     {
-        // Views ko load karenge
+        // 1️⃣ Views ko load karenge with namespace 'form'
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'form');
+
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'form');
 
 
+        // 2️⃣ Migrations load karenge
+        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
 
-        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+        // 3️⃣ Publishable resources
 
-        $customRoutes = base_path('routes/form.php');
-        if (file_exists($customRoutes)) {
-            $this->loadRoutesFrom($customRoutes);
-        }
-
+        // Views publish
         $this->publishes([
-                __DIR__ . '/../database/migrations/' => database_path('migrations'),
-            ], 'migrations');
+            __DIR__.'/../resources/views' => resource_path('views/vendor/form'),
+        ], 'views');
 
+        // Migrations publish
+        $this->publishes([
+            __DIR__.'/../database/migrations/' => database_path('migrations'),
+        ], 'migrations');
 
-            $this->publishes([
-                __DIR__ . '/../Http/Controllers' => app_path('Http/Controllers/FormController'),
-            ], 'controllers');
-
-        // Routes load karenge
-        // $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
-
-        // Config publish karne ka option
+        // Config publish
         $this->publishes([
             __DIR__.'/../config/form.php' => config_path('form.php'),
         ], 'config');
 
-         $this->publishes([
-            __DIR__.'/../resources/views' => resource_path('views/vendor/form'),
-        ], 'views');
+        // Routes publish (optional)
+        // NOTE: Normally we don't overwrite main web.php, better load routes from package
+        $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
 
-            $this->publishes([
-                __DIR__ . '/../routes/web.php' => base_path('routes/web.php'),
-            ], 'routes');
-                }
+        $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
 
+    }
+
+    /**
+     * Register any package services.
+     */
     public function register()
     {
-        // Optional: config merge
+        // Config merge
         $this->mergeConfigFrom(
             __DIR__.'/../config/form.php', 'form'
         );
