@@ -30,7 +30,7 @@ class FormServiceProvider extends ServiceProvider
             ], 'controllers');
 
         // Routes load karenge
-        $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
+        // $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
 
         // Config publish karne ka option
         $this->publishes([
@@ -41,11 +41,10 @@ class FormServiceProvider extends ServiceProvider
             __DIR__.'/../resources/views' => resource_path('views/vendor/form'),
         ], 'views');
 
-
-          $this->publishes([
+            $this->publishes([
                 __DIR__ . '/../routes/web.php' => base_path('routes/web.php'),
             ], 'routes');
-    }
+                }
 
     public function register()
     {
