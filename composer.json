@@ -18,8 +18,6 @@
         "NidhiRajput\\Form\\": "packages/NidhiRajput/Form/src/"
     }
 },
-
-
     "extra": {
         "laravel": {
             "providers": [
